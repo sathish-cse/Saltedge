@@ -11,8 +11,7 @@ public class UITools {
 
     public static AlertDialog showAlertDialog(Context context,String title, String message, DialogInterface.OnClickListener listener) {
         AlertDialog.Builder adb = new AlertDialog.Builder(context);
-        adb.setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle(title)
+        adb.setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok, listener);
         return adb.show();

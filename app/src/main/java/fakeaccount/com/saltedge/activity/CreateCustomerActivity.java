@@ -1,5 +1,6 @@
 package fakeaccount.com.saltedge.activity;
 
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,8 @@ import java.io.IOException;
 
 import fakeaccount.com.saltedge.R;
 import fakeaccount.com.saltedge.service.CreateCustomerService;
+import fakeaccount.com.saltedge.service.ProvidersListService;
+import fakeaccount.com.saltedge.utils.UITools;
 
 public class CreateCustomerActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -26,6 +29,7 @@ public class CreateCustomerActivity extends AppCompatActivity implements View.On
         setContentView(R.layout.activity_create_customer);
 
         intializeViews();
+
     }
 
     private void intializeViews() {
@@ -40,18 +44,14 @@ public class CreateCustomerActivity extends AppCompatActivity implements View.On
 
         if (v.equals(createBtn)) {
             try {
-                Toast.makeText(this, CreateCustomerService.CreateCustomer(userNameEditTxt.getText().toString()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, CreateCustomerService.createCustomer(userNameEditTxt.getText().toString()), Toast.LENGTH_SHORT).show();
+                UITools.showAlertDialog( this, "Success", "Customer Created Successfully..", null );
+                Toast.makeText(this, ProvidersListService.providersList(), Toast.LENGTH_SHORT).show();
+
             }
             catch (Exception e)
             {
-               if( e instanceof  IOException)
-               {
-                    Log.e("IOException : ", e.getMessage());
-               }
-                if( e instanceof  JSONException)
-                {
-                    Log.e("JSON Exception : ", e.getMessage());
-                }
+                e.printStackTrace();
             }
 
         }
