@@ -17,7 +17,7 @@ import okhttp3.RequestBody;
 
 public class CreateLoginService {
 
-    private CreateLoginRepository createLoginRepository;
+    private CreateLoginRepository createLoginRepository = new CreateLoginRepository();
 
     public String createLogin(int customerId, String countryCode, String providerCode, String login, String password ) throws IOException,JSONException {
 

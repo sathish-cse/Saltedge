@@ -93,6 +93,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 connectBtn.setVisibility(View.VISIBLE);
             }
         });
+
+        connectBtn.setOnClickListener( this );
     }
 
     private void setSharedPreferences()
@@ -120,6 +122,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if( v.equals(connectBtn) )
         {
+
             login = loginEditTxt.getText().toString();
             password = passwordEditTxt.getText().toString();
 
