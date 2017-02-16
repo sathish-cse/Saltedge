@@ -50,7 +50,7 @@ public class CreateCustomerActivity extends AppCompatActivity implements View.On
         if (v.equals(createBtn)) {
             try {
                // Toast.makeText(this, CreateCustomerService.createCustomer(userNameEditTxt.getText().toString()), Toast.LENGTH_SHORT).show();
-                UITools.showAlertDialog( this, "Success", "Customer Created Successfully..", null );
+               // UITools.showAlertDialog( this, "Success", "Customer Created Successfully..", null );
                 setSharedPreference(createCustomerService.createCustomer(userNameEditTxt.getText().toString()));
             }
             catch (Exception e)
