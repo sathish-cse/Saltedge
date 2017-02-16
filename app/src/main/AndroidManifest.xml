@@ -8,9 +8,11 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:name=".application.ProviderApplication"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".activity.CreateCustomerActivity"
             android:label="Customer Creation">
@@ -20,7 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity"></activity>
+
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="Connect"/>
+
     </application>
 
 </manifest>

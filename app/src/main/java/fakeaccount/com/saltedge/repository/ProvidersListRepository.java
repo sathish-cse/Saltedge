@@ -1,48 +1,51 @@
 package fakeaccount.com.saltedge.repository;
 
+import android.content.SharedPreferences;
 import android.util.Log;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import java.io.IOException;
+import java.util.ArrayList;
 
 import fakeaccount.com.saltedge.constant.AppConstant;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import fakeaccount.com.saltedge.model.Provider;
+import io.realm.Realm;
+import io.realm.RealmResults;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ProvidersListRepository {
 
-    private static String result = "";
+    private Realm realm;
+    private RealmResults<Provider> realmResults;
 
-    public static String getProvidersList(OkHttpClient client, Request request) throws IOException {
+    public void createRealm(String jsonResult) {
+        realm = Realm.getDefaultInstance();
+        try {
+            realm.beginTransaction();
 
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e("Failure : ", call.request().body().toString());
-                result = call.request().body().toString();
+            JSONObject jsonObj = new JSONObject(jsonResult);
+            // Getting JSON Array node
+
+            JSONArray data = jsonObj.getJSONArray("data");
+            Log.e("Count : ", " = " + data.length());
+            for (int i = 0; i < data.length(); i++) {
+                realm.createObjectFromJson(Provider.class, data.get(i).toString());
             }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.e("Success : ", response.body().string());
-                result = response.body().string();
-            }
-        });
-
-        return result;
+            realm.commitTransaction();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public static Request getRequestHeader()
-    {
-        return new Request.Builder()
-                .url(AppConstant.ProvidersList.PROVIDERS_URL)
-                .addHeader(AppConstant.Header.ACCEPT, AppConstant.Header.APP_JSON)
-                .addHeader(AppConstant.Header.CONTENT_TYPE, AppConstant.Header.APP_JSON)
-                .addHeader(AppConstant.Header.CLIENT_ID, AppConstant.ClientDetails.CLIENT_ID)
-                .addHeader(AppConstant.Header.SERVICE_SECRET, AppConstant.ClientDetails.SERVICE_SECRET)
-                .build();
+    public ArrayList<Provider> getProviderList() {
+        realm = Realm.getDefaultInstance();
+        ArrayList<Provider> latestresults = new ArrayList<>();
+        realmResults = realm.where(Provider.class).findAll();
+        for (Provider i : realmResults) {
+            latestresults.add(i);
+        }
+        return latestresults;
     }
+
 }

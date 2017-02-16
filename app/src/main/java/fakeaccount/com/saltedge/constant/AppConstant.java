@@ -32,6 +32,25 @@ public class AppConstant {
     public static class ProvidersList
     {
         public static final String PROVIDERS_URL = "https://www.saltedge.com/api/v3/providers";
+        public static final String PREFERENCE = "checkProvider";
+    }
+
+    public static class Login
+    {
+        public static final String CUSTOMER_ID = "customer_id";
+        public static final String COUNTRY_CODE = "country_code";
+        public static final String PROVIDER_CODE = "provider_code";
+        public static final String FETCH_TYPE = "fetch_type";
+        public static final String CREDENTIALS = "credentials";
+        public static final String LOGIN = "login";
+        public static final String PASSWORD = "password";
+        public static final String RECENT = "recent";
+        public static final String IDENTIFIER = "identifier";
+        public static final String SECRET = "secret";
+        public static final String FAKE_CODE = "XF";
+        public static final String FAKE_PROVIDER_CODE = "fakebank_simple_xf";
+        public static final String LOGIN_URL = "https://www.saltedge.com/api/v3/logins";
+
     }
 
 

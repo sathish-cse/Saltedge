@@ -34,6 +34,8 @@
             android:textSize="18sp"
             android:background="@android:color/transparent"
             android:hint="@string/username"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             android:id="@+id/username"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -47,5 +49,13 @@
         android:textColor="@color/white"
         android:id="@+id/create"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_background"
+        android:textColor="@color/white"
+        android:id="@+id/login"/>
 
 </LinearLayout>

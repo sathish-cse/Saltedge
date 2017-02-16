@@ -7,17 +7,20 @@ import java.io.IOException;
 import fakeaccount.com.saltedge.constant.AppConstant;
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class CreateCustomerRepository {
+/**
+ * Created by Sathish on 16/02/17.
+ */
+
+public class CreateLoginRepository {
 
     private String result;
 
-    public String createCustomerRequest( OkHttpClient client, Request request)
+    public String createLoginRequest(OkHttpClient client, Request request)
     {
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -27,7 +30,7 @@ public class CreateCustomerRepository {
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-             //   Log.e("Success : ", response.body().string());
+               // Log.e("Success : ", response.body().string());
                 result = response.body().string();
             }
         });
@@ -38,7 +41,7 @@ public class CreateCustomerRepository {
     public Request postRequestHeader(RequestBody body)
     {
         return new Request.Builder()
-                .url(AppConstant.CreateCustomer.CREATECUSTOMER_URL)
+                .url(AppConstant.Login.LOGIN_URL)
                 .post(body)
                 .addHeader(AppConstant.Header.ACCEPT, AppConstant.Header.APP_JSON)
                 .addHeader(AppConstant.Header.CONTENT_TYPE, AppConstant.Header.APP_JSON)
@@ -46,5 +49,4 @@ public class CreateCustomerRepository {
                 .addHeader(AppConstant.Header.SERVICE_SECRET, AppConstant.ClientDetails.SERVICE_SECRET)
                 .build();
     }
-
 }
